@@ -1,7 +1,7 @@
-import { SignedIn, auth } from "@clerk/nextjs";
+import { SignedIn } from "@clerk/nextjs";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-
+import { currentUser } from "@clerk/nextjs/server";
 import Header from "@/components/shared/Header";
 import { Button } from "@/components/ui/button";
 import { plans } from "@/constants";
@@ -9,7 +9,10 @@ import { getUserById } from "@/lib/actions/user.actions";
 import Checkout from "@/components/shared/Checkout";
 
 const Credits = async () => {
-  const { userId } = auth();
+
+  const globaluser = await currentUser();
+  const userId = globaluser?.id as string
+  // const { userId } = auth();
 
   if (!userId) redirect("/sign-in");
 
