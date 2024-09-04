@@ -56,6 +56,7 @@ export const Collection = ({
       {images.length > 0 ? (
         <ul className="collection-list">
           {images.map((image) => (
+              // @ts-ignore
             <Card image={image} key={image._id} />
           ))}
         </ul>
